@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://l2wdnm1us5xy"]
+
+[ext_resource type="Material" uid="uid://djp26p2y70b42" path="res://worlds/sandbox/assets/mat_noise_grass.tres" id="1_kknpw"]
+[ext_resource type="Script" uid="uid://dwn522hymfi3" path="res://custom_player.gd" id="1_uiqcp"]
+[ext_resource type="Material" uid="uid://dxvltjfo68j54" path="res://worlds/sandbox/assets/mat_noise_brick.tres" id="2_2wjmr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f7wia"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q8etw"]
+
+[sub_resource type="Sky" id="Sky_hfrhc"]
+sky_material = SubResource("ProceduralSkyMaterial_q8etw")
+
+[sub_resource type="Environment" id="Environment_0n4jc"]
+background_mode = 2
+background_energy_multiplier = 0.54
+sky = SubResource("Sky_hfrhc")
+ambient_light_color = Color(0.717647, 0.717647, 0.717647, 1)
+tonemap_mode = 2
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_616qr"]
+
+[node name="World01" type="Node3D" unique_id=1214647263]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1155473574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = ExtResource("1_kknpw")
+use_collision = true
+size = Vector3(500, 1, 500)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=2090630708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, -10)
+use_collision = true
+size = Vector3(1, 10, 1)
+material = ExtResource("2_2wjmr")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=264598179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, -10)
+use_collision = true
+size = Vector3(1, 10, 1)
+material = ExtResource("2_2wjmr")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="." unique_id=428550900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, 10)
+use_collision = true
+size = Vector3(1, 10, 1)
+material = ExtResource("2_2wjmr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="." unique_id=543659899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, -62)
+use_collision = true
+size = Vector3(64, 1, 64)
+material = ExtResource("2_2wjmr")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="." unique_id=1279540202]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, 10)
+use_collision = true
+size = Vector3(1, 10, 1)
+material = ExtResource("2_2wjmr")
+
+[node name="player" type="CharacterBody3D" parent="." unique_id=1056666796]
+script = ExtResource("1_uiqcp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player" unique_id=612984184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_f7wia")
+
+[node name="head" type="Node3D" parent="player" unique_id=339433898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="player/head" unique_id=975549740]
+fov = 80.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=732523965]
+environment = SubResource("Environment_0n4jc")
+camera_attributes = SubResource("CameraAttributesPractical_616qr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1335072951]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 9, 0)
+light_color = Color(1, 1, 0.458824, 1)
+shadow_enabled = true
